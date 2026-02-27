@@ -22,7 +22,7 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 
 Global="*res://Globals/Global.gd"
 AudioManager="*res://Globals/AudioManager.tscn"
-ThemeManager="*res://Globals/ThemeManager.tscn"
+ThemeManager="*res://Globals/ThemeManager.gd"
 
 [display]
 

@@ -28,7 +28,10 @@ func apply_button_style(btn: Button):
 	# Glassmorphic button
 	var normal = StyleBoxFlat.new()
 	normal.bg_color = Color(1, 1, 1, 0.1)
-	normal.border_width_all = 2
+	normal.border_width_left = 2
+	normal.border_width_top = 2
+	normal.border_width_right = 2
+	normal.border_width_bottom = 2
 	normal.border_color = Color(1, 1, 1, 0.2)
 	normal.corner_radius_top_left = 16
 	normal.corner_radius_top_right = 16
@@ -68,7 +71,10 @@ func apply_title_style(label: Label):
 func apply_panel_style(panel: PanelContainer):
 	var sb = StyleBoxFlat.new()
 	sb.bg_color = Color(0, 0, 0, 0.4)
-	sb.border_width_all = 2
+	sb.border_width_left = 2
+	sb.border_width_top = 2
+	sb.border_width_right = 2
+	sb.border_width_bottom = 2
 	sb.border_color = Color(1, 1, 1, 0.1)
 	sb.corner_radius_top_left = 16
 	sb.corner_radius_top_right = 16
@@ -127,9 +133,11 @@ func _add_floating_particles(parent: Node):
 		_float_orb(panel)
 
 func _float_orb(panel: Panel):
-	var tw = create_tween().set_loops()
 	var new_x = panel.position.x + randf_range(-100, 100)
 	var new_y = panel.position.y + randf_range(-100, 100)
 	var dur = randf_range(5.0, 10.0)
+	
+	var tw = create_tween()
 	tw.tween_property(panel, "position", Vector2(new_x, new_y), dur).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	tw.tween_property(panel, "position", panel.position, dur).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tw.tween_callback(func(): _float_orb(panel))

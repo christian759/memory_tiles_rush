@@ -75,7 +75,10 @@ func set_matched():
 	sb.corner_radius_top_right = 12
 	sb.corner_radius_bottom_left = 12
 	sb.corner_radius_bottom_right = 12
-	sb.border_width_all = 3
+	sb.border_width_left = 3
+	sb.border_width_top = 3
+	sb.border_width_right = 3
+	sb.border_width_bottom = 3
 	sb.border_color = Color(0.4, 1.0, 0.4, 1.0)
 	sb.shadow_color = Color(0.1, 0.6, 0.1, 0.5)
 	sb.shadow_size = 10
@@ -141,10 +144,16 @@ func _set_front_style():
 	sb.bg_color = Color(0.95, 0.95, 0.95, 1.0)
 	if bonus_type == 1 or bonus_type == 2:
 		sb.border_color = Color(0.8, 0.8, 0.2, 1.0)
-		sb.border_width_all = 4
+		sb.border_width_left = 4
+		sb.border_width_top = 4
+		sb.border_width_right = 4
+		sb.border_width_bottom = 4
 	elif bonus_type == 3:
 		sb.border_color = Color(0.8, 0.2, 0.2, 1.0)
-		sb.border_width_all = 4
+		sb.border_width_left = 4
+		sb.border_width_top = 4
+		sb.border_width_right = 4
+		sb.border_width_bottom = 4
 	else:
 		sb.border_color = Color(0.8, 0.8, 0.8, 1.0)
 		sb.border_width_bottom = 4
