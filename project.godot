@@ -15,10 +15,14 @@ general/updates_per_second=90
 [application]
 
 config/name="Memory Tiles Rush"
+run/main_scene="res://home.tscn"
 config/features=PackedStringArray("4.6", "Mobile")
 boot_splash/show_image=false
 config/icon="res://icon.svg"
-run/main_scene="res://home.tscn"
+
+[autoload]
+
+Global="res://scripts/Global.gd"
 
 [display]
 
@@ -36,6 +40,3 @@ window/vsync/vsync_mode=0
 
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="mobile"
-
-[autoload]
-Global="res://scripts/Global.gd"
