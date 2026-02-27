@@ -15,7 +15,7 @@ general/updates_per_second=90
 [application]
 
 config/name="Memory Tiles Rush"
-run/main_scene="res://home.tscn"
+run/main_scene="res://scenes/home.tscn"
 config/features=PackedStringArray("4.6", "Mobile")
 boot_splash/show_image=false
 config/icon="res://icon.svg"
