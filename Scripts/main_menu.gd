@@ -7,7 +7,7 @@ func _ready():
 	box.position.y += 50
 	box.modulate.a = 0
 	var tw = create_tween().set_parallel(true)
-	tw.tween_property(box, "position:y", box.position.y - 50, 0.5).set_trans(Tween.TRANS_OUT).set_ease(Tween.EASE_OUT)
+	tw.tween_property(box, "position:y", box.position.y - 50, 0.5).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	tw.tween_property(box, "modulate:a", 1.0, 0.5)
 	
 	AudioManager.play_bgm()
