@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://cxab35h4thmg"]
+[gd_scene format=3 uid="uid://cxab35h4thmg"]
 
 [ext_resource type="Script" path="res://Globals/ThemeManager.gd" id="1_thm"]
 
