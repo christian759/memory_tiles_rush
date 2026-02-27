@@ -8,35 +8,25 @@
 
 config_version=5
 
-[accessibility]
-
-general/updates_per_second=90
-
 [application]
 
 config/name="Memory Tiles Rush"
-run/main_scene="res://scenes/home.tscn"
-config/features=PackedStringArray("4.6", "Mobile")
-boot_splash/show_image=false
-config/icon="res://icon.svg"
+run/main_scene="res://Scenes/MainMenu.tscn"
+config/features=PackedStringArray("4.3", "Forward Plus")
 
 [autoload]
 
-Global="res://scripts/Global.gd"
+Global="*res://Globals/Global.gd"
+AudioManager="*res://Globals/AudioManager.tscn"
 
 [display]
 
-window/size/viewport_width=1080
-window/size/viewport_height=1920
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/stretch/mode="canvas_items"
-window/handheld/orientation=1
-window/vsync/vsync_mode=0
-
-[physics]
-
-3d/physics_engine="Jolt Physics"
+window/stretch/aspect="keep"
 
 [rendering]
 
-rendering_device/driver.windows="d3d12"
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

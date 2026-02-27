@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6l2xv8v6l1xx"]
+
+[ext_resource type="Script" path="res://Globals/AudioManager.gd" id="1_4n2g7"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_4n2g7")
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="Flip" type="AudioStreamPlayer" parent="SFX"]
+bus = &"SFX"
+
+[node name="Match" type="AudioStreamPlayer" parent="SFX"]
+bus = &"SFX"
+
+[node name="Error" type="AudioStreamPlayer" parent="SFX"]
+bus = &"SFX"
+
+[node name="Win" type="AudioStreamPlayer" parent="SFX"]
+bus = &"SFX"
+
+[node name="Hover" type="AudioStreamPlayer" parent="SFX"]
+bus = &"SFX"
+
+[node name="Click" type="AudioStreamPlayer" parent="SFX"]
+bus = &"SFX"
