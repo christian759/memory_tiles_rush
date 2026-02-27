@@ -20,6 +20,12 @@ var moves_left: int = 0
 var icons = ["💎", "🍎", "🚀", "🌟", "🍔", "🎮", "🎵", "🎈", "🍉", "🍓", "🍌", "🥑", "🍩", "🍕", "🛸", "🎲", "💡", "🌈"]
 
 func _ready():
+	ThemeManager.apply_background($Background)
+	ThemeManager.apply_title_style($UI/TopBar/HBox/ModeLabel)
+	ThemeManager.apply_title_style($UI/TopBar/HBox/StatsLabel)
+	ThemeManager.apply_button_style($UI/TopBar/HBox/Controls/HintButton)
+	ThemeManager.apply_button_style($UI/TopBar/HBox/Controls/PauseButton)
+	
 	AudioManager.play_bgm()
 	Global.reset_run_stats()
 	_setup_game()

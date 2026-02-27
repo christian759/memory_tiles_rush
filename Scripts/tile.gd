@@ -39,24 +39,59 @@ func flip_down():
 func set_matched():
 	is_matched = true
 	disabled = true
+	
+	# Instantiate Match Particles
+	var p = CPUParticles2D.new()
+	p.emitting = false
+	p.one_shot = true
+	p.explosiveness = 0.9
+	p.emission_shape = CPUParticles2D.EMISSION_SHAPE_SPHERE
+	p.emission_sphere_radius = 20.0
+	p.direction = Vector2(0, -1)
+	p.spread = 180.0
+	p.gravity = Vector2(0, 98)
+	p.initial_velocity_min = 50.0
+	p.initial_velocity_max = 150.0
+	p.scale_amount_min = 4.0
+	p.scale_amount_max = 8.0
+	p.color = Color(1.0, 0.9, 0.2, 1.0) # Golden yellow
+	p.amount = 20
+	p.lifetime = 0.8
+	
+	# Add to center of tile
+	p.position = size / 2.0
+	add_child(p)
+	p.emitting = true
+	
 	# Pop animation
 	var tween = create_tween()
-	tween.tween_property(self, "scale", Vector2(1.1, 1.1), 0.15)
-	tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.15)
+	tween.tween_property(self, "scale", Vector2(1.15, 1.15), 0.15).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	
 	# Change color to matched state
 	var sb = StyleBoxFlat.new()
 	sb.bg_color = Color(0.2, 0.8, 0.2, 0.8)
-	sb.corner_radius_top_left = 8
-	sb.corner_radius_top_right = 8
-	sb.corner_radius_bottom_left = 8
-	sb.corner_radius_bottom_right = 8
+	sb.corner_radius_top_left = 12
+	sb.corner_radius_top_right = 12
+	sb.corner_radius_bottom_left = 12
+	sb.corner_radius_bottom_right = 12
+	sb.border_width_all = 3
+	sb.border_color = Color(0.4, 1.0, 0.4, 1.0)
+	sb.shadow_color = Color(0.1, 0.6, 0.1, 0.5)
+	sb.shadow_size = 10
 	add_theme_stylebox_override("disabled", sb)
 
 func _animate_flip(to_up: bool):
-	var tween = create_tween()
-	tween.tween_property(self, "scale:x", 0.0, 0.15).set_trans(Tween.TRANS_QUAD)
-	tween.tween_callback(func():
+	var tween = create_tween().set_parallel(true)
+	
+	# Horizontal squeeze (flip effect)
+	tween.tween_property(self, "scale:x", 0.0, 0.15).set_trans(Tween.TRANS_SINE)
+	
+	# Vertical jump
+	var original_y = position.y
+	tween.tween_property(self, "position:y", position.y - 15.0, 0.15).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	
+	tween.chain().tween_callback(func():
 		if to_up:
 			symbol_label.show()
 			_set_front_style()
@@ -64,7 +99,12 @@ func _animate_flip(to_up: bool):
 			symbol_label.hide()
 			_set_back_style()
 	)
-	tween.tween_property(self, "scale:x", 1.0, 0.15).set_trans(Tween.TRANS_QUAD)
+	
+	# Un-squeeze and fall down
+	var fall_tween = create_tween().set_parallel(true)
+	fall_tween.tween_property(self, "scale:x", 1.0, 0.15).set_trans(Tween.TRANS_SINE)
+	fall_tween.tween_property(self, "position:y", original_y, 0.15).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+
 
 func _on_pressed():
 	if not is_flipped and not is_matched:

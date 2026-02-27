@@ -34,6 +34,7 @@ func _ready():
 
 func _connect_sounds(node: Node):
 	if node is Button:
+		ThemeManager.apply_button_style(node)
 		if not node.is_connected("mouse_entered", Callable(self, "_on_btn_hover")):
 			node.mouse_entered.connect(func(): AudioManager.play_hover())
 		if not node.is_connected("pressed", Callable(self, "_on_btn_click")):

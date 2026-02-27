@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxab35h4thmg"]
+
+[ext_resource type="Script" path="res://Globals/ThemeManager.gd" id="1_thm"]
+
+[node name="ThemeManager" type="Node"]
+script = ExtResource("1_thm")

@@ -5,6 +5,9 @@ extends Control
 @onready var option_grid = $VBoxContainer/HBoxGrid/OptionGrid
 
 func _ready():
+	ThemeManager.apply_background($Background)
+	ThemeManager.apply_title_style($VBoxContainer/Title)
+	
 	_connect_sounds(self)
 	btn_sound.button_pressed = Global.sounds_enabled
 	btn_music.button_pressed = Global.music_enabled
@@ -22,6 +25,7 @@ func _ready():
 
 func _connect_sounds(node: Node):
 	if node is Button:
+		ThemeManager.apply_button_style(node)
 		if not node.is_connected("mouse_entered", Callable(self, "_on_btn_hover")):
 			node.mouse_entered.connect(func(): AudioManager.play_hover())
 		if not node.is_connected("pressed", Callable(self, "_on_btn_click")):

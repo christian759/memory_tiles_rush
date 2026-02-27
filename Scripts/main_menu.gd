@@ -1,6 +1,9 @@
 extends Control
 
 func _ready():
+	ThemeManager.apply_background($Background)
+	ThemeManager.apply_title_style($VBoxContainer/Title)
+	
 	_connect_sounds(self)
 	# Quick tween entry animation
 	var box = $VBoxContainer
@@ -14,6 +17,7 @@ func _ready():
 
 func _connect_sounds(node: Node):
 	if node is Button:
+		ThemeManager.apply_button_style(node)
 		node.mouse_entered.connect(func(): AudioManager.play_hover())
 		node.pressed.connect(func(): AudioManager.play_click())
 	for child in node.get_children():

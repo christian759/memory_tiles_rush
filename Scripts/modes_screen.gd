@@ -3,6 +3,10 @@ extends Control
 @onready var desc_label = $VBoxContainer/DescriptionBox/DescLabel
 
 func _ready():
+	ThemeManager.apply_background($Background)
+	ThemeManager.apply_title_style($VBoxContainer/Title)
+	ThemeManager.apply_panel_style($VBoxContainer/DescriptionBox)
+	
 	_connect_sounds(self)
 	
 	var box = $VBoxContainer
@@ -14,6 +18,7 @@ func _ready():
 
 func _connect_sounds(node: Node):
 	if node is Button:
+		ThemeManager.apply_button_style(node)
 		if not node.is_connected("mouse_entered", Callable(self, "_on_btn_hover_sound")):
 			node.mouse_entered.connect(func(): AudioManager.play_hover())
 		if not node.is_connected("pressed", Callable(self, "_on_btn_click_sound")):
