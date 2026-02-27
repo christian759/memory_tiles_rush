@@ -18,6 +18,7 @@ config/name="Memory Tiles Rush"
 config/features=PackedStringArray("4.6", "Mobile")
 boot_splash/show_image=false
 config/icon="res://icon.svg"
+run/main_scene="res://home.tscn"
 
 [display]
 
@@ -35,3 +36,6 @@ window/vsync/vsync_mode=0
 
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="mobile"
+
+[autoload]
+Global="res://scripts/Global.gd"
